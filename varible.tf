@@ -21,3 +21,26 @@ variable "eks_version" {
   type        = string
   default     = "1.24"
 }
+
+variable "region" {
+  description = "Region to deploy the resources"
+  type        = string
+  default     = "eu-west-3"
+}
+
+
+#========= ALB =========
+
+variable "alb_name" {
+  description = "Nom du Load Balancer applicatif"
+  type        = string
+  default     = "grp4-alb"
+}
+
+variable "alb_ports" {
+  description = "Liste des ports pour le Load Balancer"
+  type        = list(number)
+  default     = [80, 443]
+}
+
+
