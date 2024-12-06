@@ -1,6 +1,6 @@
 resource "aws_security_group" "alb_sg" {
   name        = "alb-security-group"
-  vpc_id      = module.core-compute.vpc_id  # Référence le VPC exporté par le module core-compute
+  vpc_id      = module.core-compute.vpc_id 
   description = "Allow HTTP and HTTPS traffic to ALB"
 
   ingress {
@@ -30,7 +30,7 @@ resource "aws_lb" "application" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = module.core-compute.public_subnet_ids  # Référence les sous-réseaux publics exportés par le module
+  subnets            = module.core-compute.public_subnet_ids 
 
   tags = {
     Name = var.alb_name
@@ -41,7 +41,7 @@ resource "aws_lb_target_group" "eks" {
   name        = "eks-target-group"
   port        = 80
   protocol    = "HTTP"
-  vpc_id      = module.core-compute.vpc_id  # Référence le VPC exporté par le module core-compute
+  vpc_id      = module.core-compute.vpc_id 
   target_type = "instance"
 }
 
